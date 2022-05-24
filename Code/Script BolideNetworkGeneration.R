@@ -91,3 +91,36 @@ NetLegend + ggsave("Figures/Figure X NetworkLegend.pdf",
              width = 11, height = 8, units="in", dpi=600, 
              device=cairo_pdf) 
 
+## extra plots ---- 
+
+## degree distributions 
+rainbowV <- MetBrewer::met.brewer("Signac", 35, "continuous")
+rainbowM <- MetBrewer::met.brewer("Signac", 122, "continuous")
+
+levelsV <- Edges %>% 
+  select(Virus, nVirus) %>% distinct %>% 
+  arrange(-nVirus) %>% pull(Virus)
+
+levelsM <- Edges %>% 
+  select(Mosquito, nMosquito) %>% distinct %>% 
+  arrange(-nMosquito) %>% pull(Mosquito)
+
+Edges %>% 
+  select(Virus, nVirus) %>% distinct %>% 
+  mutate(Virus=fct_relevel(Virus, levelsV)) %>% 
+  ggplot(aes(x=Virus, y=nVirus, fill=Virus)) + 
+  geom_bar(stat="identity") + 
+  scale_fill_manual(values=rainbowV) + 
+  theme_bw(base_size = 16) + 
+  theme(axis.text.x = element_text(angle=90), 
+        legend.position = "none")
+  
+Edges %>% 
+  select(Mosquito, nMosquito) %>% distinct %>% 
+  mutate(Mosquito=fct_relevel(Mosquito, levelsM)) %>% 
+  ggplot(aes(x=Mosquito, y=nMosquito, fill=Mosquito)) + 
+  geom_bar(stat="identity") + 
+  scale_fill_manual(values=rainbowM) + 
+  theme_bw(base_size = 16) + 
+  theme(axis.text.x = element_text(angle=45, hjust=1, size = 8), 
+        legend.position = "none")
