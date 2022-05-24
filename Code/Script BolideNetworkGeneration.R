@@ -82,11 +82,12 @@ G %>% as_tbl_graph %>%
 
 # Network only 
 Net + ggsave("Figures/Figure X Network.pdf", 
-             width = 10, height = 8, units="in", dpi=600, device="pdf")
+             width = 10, height = 8, units="in", dpi=600, 
+             device=cairo_pdf)
 
 
 # Network with legend  - this is not working come back to 
-NetLegend + ggsave("Figures/Figure X NetworkLegend.png", 
-             width = 11, height = 8, units="in", dpi=600) # will fix to be pdf 
-
+NetLegend + ggsave("Figures/Figure X NetworkLegend.pdf", 
+             width = 11, height = 8, units="in", dpi=600, 
+             device=cairo_pdf) 
 
