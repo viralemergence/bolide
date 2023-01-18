@@ -225,7 +225,7 @@ spplot(sPDF, 'n', col.regions = cols)
 
 ###### Figure 3
 
-years <- read_csv("StudyYear.csv")
+years <- read_csv("./Data/StudyYear.csv")
 
 data %>% 
   rename(Title = `Title (from Imported table)`) %>%
