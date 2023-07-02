@@ -1,6 +1,6 @@
 
 library(tidyverse); library(magrittr)
-data <- read_csv('~/Github/bolide/Data.csv')
+data <- read_csv('~/Github/bolide/Data/Data.csv')
 data <- data %>% filter(!is.na(data$Virus))
 library(stringr)
 
